@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "whastapp_clone" "\0"
+            VALUE "FileDescription", "whatsapp" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "whastapp_clone" "\0"
+            VALUE "InternalName", "whatsapp" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "whastapp_clone.exe" "\0"
-            VALUE "ProductName", "whastapp_clone" "\0"
+            VALUE "OriginalFilename", "whatsapp.exe" "\0"
+            VALUE "ProductName", "whatsapp" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

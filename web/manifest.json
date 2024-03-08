@@ -1,6 +1,6 @@
 {
-    "name": "whastapp_clone",
-    "short_name": "whastapp_clone",
+    "name": "whatsapp",
+    "short_name": "whatsapp",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
