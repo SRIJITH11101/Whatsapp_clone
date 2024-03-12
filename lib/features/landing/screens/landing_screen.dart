@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp/colors.dart';
+import 'package:whatsapp/commons/widgets/commonbutton.dart';
+import 'package:whatsapp/features/auth/screens/login_screen.dart';
 
 class landing_screen extends StatelessWidget {
   const landing_screen({super.key});
+
+  void naviToLogin(BuildContext context) {
+    Navigator.pushNamed(context, LoginScreen.routeName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +25,7 @@ class landing_screen extends StatelessWidget {
           ),
           SizedBox(height: size.height / 9),
           Image.asset(
-            "assets/bg1.png",
+            "assets/bg.png",
             height: 340,
             width: 340,
             color: tabColor,
@@ -34,16 +40,10 @@ class landing_screen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: ElevatedButton(
-              onPressed: null,
-              child: Text(
-                'Accept and Continue',
-                style: TextStyle(color: Colors.black),
-              ),
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: tabColor,
-                  minimumSize: Size(double.infinity, 50)),
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: CommonButton(
+              onpressed: () => naviToLogin(context),
+              text: 'Accept and Continue',
             ),
           )
         ],
