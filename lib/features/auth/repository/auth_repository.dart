@@ -1,10 +1,13 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:whatsapp/commons/widgets/utils/utils.dart';
+import 'package:whatsapp/commons/repositories/common_fbStorage_repo.dart';
+import 'package:whatsapp/commons/utils/utils.dart';
 import 'package:whatsapp/features/auth/screens/otp_screen.dart';
 import 'package:whatsapp/features/auth/screens/user_info_screen.dart';
 
@@ -49,6 +52,25 @@ class AuthRepository {
           context, UserInfoScreen.routeName, (route) => false);
       await auth.signInWithCredential(credential);
     } on FirebaseAuthException catch (e) {
+      showSnackbar(context: context, content: e.toString());
+    }
+  }
+
+  void saveDataToFirestore(
+      {required BuildContext context,
+      required String name,
+      required ProviderRef ref,
+      required File? profilePic}) async {
+    try {
+      String uid = auth.currentUser!.uid;
+      String photoURL =
+          'https://w7.pngwing.com/pngs/129/292/png-transparent-female-avatar-girl-face-woman-user-flat-classy-users-icon-thumbnail.png';
+      if (profilePic != null) {
+        photoURL = await ref
+            .read(commonFBstorageRepoProvider)
+            .storeFileToFirebase('profilePic/$uid', profilePic);
+      }
+    } catch (e) {
       showSnackbar(context: context, content: e.toString());
     }
   }

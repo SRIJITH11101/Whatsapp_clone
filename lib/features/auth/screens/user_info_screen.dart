@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:whatsapp/commons/widgets/utils/utils.dart';
+import 'package:whatsapp/commons/utils/utils.dart';
 
 class UserInfoScreen extends StatefulWidget {
   const UserInfoScreen({super.key});
