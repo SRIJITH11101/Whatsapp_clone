@@ -10,6 +10,8 @@ import 'package:whatsapp/commons/repositories/common_fbStorage_repo.dart';
 import 'package:whatsapp/commons/utils/utils.dart';
 import 'package:whatsapp/features/auth/screens/otp_screen.dart';
 import 'package:whatsapp/features/auth/screens/user_info_screen.dart';
+import 'package:whatsapp/models/user_model.dart';
+import 'package:whatsapp/screens/mobile_layout_screen.dart';
 
 final AuthRepositoryProvider = Provider(
   (ref) => AuthRepository(
@@ -70,6 +72,21 @@ class AuthRepository {
             .read(commonFBstorageRepoProvider)
             .storeFileToFirebase('profilePic/$uid', profilePic);
       }
+
+      var user = UserModel(
+          name: name,
+          uid: uid,
+          profilePic: photoURL,
+          isOnline: true,
+          phonenumber: auth.currentUser!.uid,
+          groupId: []);
+
+      await firestore.collection('users').doc(uid).set(user.toMap());
+
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const MobileLayoutScreen()),
+          (route) => false);
     } catch (e) {
       showSnackbar(context: context, content: e.toString());
     }
